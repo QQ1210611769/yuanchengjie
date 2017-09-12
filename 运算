@@ -1,0 +1,97 @@
+#include "stdio.h"
+#include "stdlib.h"
+#include "time.h"
+
+
+int makeNumber();
+int claculate();
+
+// 生成随机数
+int makeNumber()
+    {
+   int shu;
+   srand((unsigned)time(NULL));
+   shu=rand()%100;
+   return shu;
+}
+
+//计算
+int claculate()
+{  
+	int x,y,i,number;  //number是你要选择做的题数量；x,y为计算的数。
+	int a,answer,trueanswer,yu,trueyu;  // answer答案,trueanswer正确答案,yu余数,trueyu正确余数。
+	int count=0;  //做对题目总数。
+
+   scanf("%d",&number);
+   for(i=0;i<number;i++)
+   {
+	  printf("%d: ",i);
+       x=makeNumber();
+       y=makeNumber();
+	   a=x%4;   //选择运算符 0+ 1- 2* 3/.
+       switch(a)
+	   {
+	      case 0:
+			  printf("%d + %d= ",x,y);
+              trueanswer=x+y;
+			  scanf("%d",&answer);
+			  if(trueanswer == answer)
+			  {
+				  printf("true\n");
+			      count++;
+			  }
+			  else 
+				  printf("false\n");
+			 break;
+		  case 1:
+              printf("%d - %d= ",x,y);
+			  trueanswer=x-y;
+			  scanf("%d",&answer);
+			  if(trueanswer == answer)
+			  {
+				  printf("true\n");
+			      count++;
+			  }
+			  else 
+				  printf("false\n");
+			 break;
+		  case 2:
+			  printf("%d * %d= ",x,y);
+			  trueanswer=x*y;
+			  scanf("%d",&answer);
+			  if(trueanswer == answer)
+				  {
+				  printf("true\n");
+			      count++;
+			  }
+			  else 
+				  printf("false\n");
+			 break;
+		  case 3:
+			  printf("%d / %d= ",x,y);
+			  trueanswer=x/y;
+			  trueyu=x%y;
+			  if(trueyu==0)
+			      scanf("%d",&answer);
+			  else
+				  scanf("%d ****** %d",answer,yu);
+			  if((trueanswer == answer) && (yu == trueyu))
+				  {
+				  printf("true\n");
+			      count++;
+			  }
+			  else 
+				  printf("false\n");
+			 break;
+	   }
+   }
+ printf("Total topics of true is : %d\n",count);
+}
+
+//主函数
+int main()
+{  
+   printf("please select the number of topics you need:\n");
+   claculate();
+   return 0;
+}

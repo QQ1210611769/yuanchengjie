@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include <stdlib.h>
+void main()
+{
+    char ch;
+ int num1=0,num2=0,num3=0;
+    FILE *fp;
+    int i;
+ if((fp=fopen("c:\\yuan.txt","r"))==NULL)  
+    {
+        printf("not open");
+        exit(0);
+    }
+    while ((ch=fgetc(fp))!=EOF)   //fgetc:从文件指针stream指向的文件中读取字符,读到文件末尾或者读取出错时返回EOF
+ {
+  if((ch>='a' &&  ch<='z') || (ch>='A' &&  ch<='Z'))
+     num1++;
+          else if(ch>='0' &&  ch<='9')
+             num2++;
+                else 
+                  num3++;
+} 
+    printf("本文一共包含字母：%5d 数字:%5d 其他: %5d \n",num1,num2,num3);
+    fclose(fp);
+}
